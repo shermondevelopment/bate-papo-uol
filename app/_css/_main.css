@@ -2,6 +2,7 @@
 
 @import url('./_reset.css');
 
+/* Rules CSS */
 .d-flex {
   display: flex;
 }
@@ -14,7 +15,148 @@
   justify-content: space-between;
 }
 
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.align-self-end {
+  align-self: end;
+}
+
+/* end rules css */
+
+/* Header */
+
 .header {
   height:80px;
   padding: 16px 22px;
+  box-shadow: 0px 0px 5px rgb(0 0 0 / 5%);
+}
+
+/* end header */
+
+.main {
+  height: 100vh;
+  overflow-y: auto;
+}
+.main-message {
+  padding: 40px;
+}
+
+.dl {
+  padding-bottom: 35px;
+}
+
+.dt, .dd {
+  width: max-content;
+  max-width: 360px;
+  padding: 15px;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 30px;
+  border-radius: 0px 5px 5px 5px;
+  position: relative;
+}
+
+.dd {
+  border-radius: 5px 0px 5px 5px;
+}
+
+.dt::before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-top: 0px solid transparent;
+  border-bottom: 17px solid transparent; 
+  border-right:24px solid #FFDDDB; 
+  left: -18px;
+  top: 0;
+}
+.dt::before {
+  border-right:24px solid #FFF1CD; 
+}
+.dt.message-private::before {
+  border-right:24px solid #FFDDDB; 
+}
+
+.dd::before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 25px solid #4c6ef5;
+  position: absolute;
+  right: -18px;
+  top: 0;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.message-public {
+  background-color: #FFF1CD;
+}
+.message-me {
+  background-color: #4c6ef5;
+  color: #fff;
+}
+
+.message-private {
+  background-color: #FFDDDB;
+}
+
+.main::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.main::-webkit-scrollbar-thumb {
+  background: #D3D1CB;
+}
+
+.main::-webkit-scrollbar-track {
+  background: #EDECE9;
+}
+.box-message {
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+}
+
+.box-area {
+  height: inherit;
+  position: relative;
+}
+.message-input::placeholder {
+  font-family: 'Roboto', san-serif;
+  color: #000;
+}
+.message-input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  height: inherit;
+  padding: 10px;
+  box-shadow: 0px 0px 5px rgb(0 0 0 / 5%);
+  font-size: 16px;
+  font-family: 'Roboto', san-serif;
+  color: #000;
+}
+.send {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 415px) {
+  .dt, .dd {
+    max-width: 240px;
+  }
 }

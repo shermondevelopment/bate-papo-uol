@@ -5,6 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" type="text/css" href="app/_css/_main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <title>Bate Papo UOL</title>
 </head>
 
@@ -15,6 +18,40 @@
     <img src="app/_img/user.svg" alt="user profile" />
   </header>
 
+  <main class="main">
+    <section class="main-message">
+      <dl class="dl d-flex flex-direction-column">
+        <dt class="dt message-public">Oi vitor Tudo bom?</dt>
+        <dt class="dt message-private">
+          <span><strong class="strong">Bruna</strong> reservadamente para <strong
+              class="strong">Fernanda:</strong></span>
+          <span>Olá Fernanda</span>
+        </dt>
+        <dd class="dd message-me me align-self-end">
+          <span><strong class="strong">Vitor</strong> reservadamente para <strong
+              class="strong">maria:</strong></span>&nbsp;
+          <span>Sim e
+            você? a blz então vamos nao sei o que e depois ta ok nao nada haver cara</span>
+        </dd>
+        <dt class="dt message-public">Estou otimo!</dt>
+        <dd class="dd message-me me align-self-end">Que bom</dd>
+        <dt class="dt message-public">Estou otimo!</dt>
+        <dd class="dd message-me me align-self-end">Que bom</dd>
+        <dt class="dt message-public">Estou otimo!</dt>
+        <dd class="dd message-me me align-self-end" align-self-end>Que bom</dd>
+        <dt class="dt message-public">Estou otimo!</dt>
+        <dd class="dd message-me me align-self-end">Que bom</dd>
+        <dt class="dt message-public">Estou otimo!</dt>
+        <dd class="dd message-me me align-self-end">Que bom</dd>
+      </dl>
+    </section>
+    <section class="box-message">
+      <div class="box-area">
+        <input type="text" name="message" class="message-input" placeholder="Escreva aqui..." />
+        <img src="app/_img/airplane.svg" width="25" height="25" class="send" />
+      </div>
+    </section>
+  </main>
 </body>
 
 </html>
