@@ -111,6 +111,19 @@
   background-color: #FFDDDB;
 }
 
+.date-message {
+  position: absolute;
+  width: max-content;
+  top: 40%;
+  right: -120px;
+  color: #8A8D91;
+  font-size: 13px;
+}
+
+.me .date-message {
+  left: -120px;
+}
+
 .main::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -165,5 +178,11 @@
 @media (max-width: 415px) {
   .dt, .dd {
     max-width: 240px;
+    margin-bottom:40px;
+  }
+  .date-message {
+    top: auto;
+    left: 0 !important;
+    bottom: -25px;
   }
 }
