@@ -1,3 +1,20 @@
 @charset "UTF-8";
 
 @import url('./_reset.css');
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.header {
+  height:80px;
+  padding: 16px 22px;
+}
