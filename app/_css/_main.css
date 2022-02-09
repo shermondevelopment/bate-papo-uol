@@ -15,12 +15,20 @@
   justify-content: space-between;
 }
 
+.justify-content-center {
+  justify-content: center;
+}
+
+
 .flex-direction-column {
   flex-direction: column;
 }
 
 .align-self-end {
   align-self: end;
+}
+.align-self-center {
+  align-self: center;
 }
 
 /* end rules css */
@@ -173,6 +181,83 @@
   right: 30px;
   top: 30px;
   cursor: pointer;
+}
+
+.section-main {
+  width: max-content;
+  margin: 72px auto;
+}
+
+.logo-uol {
+  align-self: center;
+}
+
+.input-info-user {
+  width: 261px;
+  height: 54px;
+  margin-top: 94px;
+  border: 1px solid #D7D7D7;
+  border-radius: 4px;
+  outline: 0;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.button {
+  width: 110px;
+  height: 45px;
+  cursor: pointer;
+  border-radius: 9px;
+  color: #696969;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  border: 0;
+  margin-top: 15px;
+  align-self: center;
+}
+
+/* Spinner Loading */
+
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #000 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* End Load Spinner */
+
+.not-loading {
+  display: none;
 }
 
 @media (max-width: 415px) {
