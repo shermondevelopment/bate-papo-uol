@@ -1,3 +1,5 @@
+let loading = false;
+
 function checkUser(){
   if(!localStorage.getItem('user')) {
     window.location.pathname = "/home.html"
@@ -17,10 +19,21 @@ async function postRequest(router, data) {
 
 async function sendForm(event) {
   event.preventDefault()
+  enableLoading(true)
   const name = document.querySelector('input').value
   const { status } = await postRequest('participants', name)
   if(status === 200) {
-   localStorage.setItem('user', 'user')
-   window.location.href= "/"
+    enableLoading(false)
+    localStorage.setItem('user', name)
+    window.location.href= "/"
+  }
+}
+
+function enableLoading(loading) {
+  const loadingElement = document.querySelector('.load-area')
+  const formElement = document.querySelector('form')
+  if(loading) {
+    formElement.style.display = "none"
+    loadingElement.classList.remove('not-loading')
   }
 }

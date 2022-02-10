@@ -17,8 +17,9 @@
     <section class="section-main d-flex flex-direction-column justify-content-center">
       <img src="app/_img/logo.svg" width="130" class="logo-uol" />
       <form class="d-flex flex-direction-column" method="post" onsubmit="sendForm(event)">
-        <input type="text" name="user" class="input-info-user" placeholder="Digite Seu nome" required />
-        <button type="submit" class="button">Entrar</button>
+        <input type="text" name="user" class="input-info-user" placeholder="Digite Seu nome" required
+          data-identifier="enter-name" />
+        <button type="submit" class="button" data-identifier="start">Entrar</button>
       </form>
       <div class="load-area d-flex flex-direction-column not-loading">
         <div class="lds-ring align-self-center">

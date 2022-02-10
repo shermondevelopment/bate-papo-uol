@@ -218,6 +218,10 @@
 
 /* Spinner Loading */
 
+.load-area {
+  margin-top: 80px;
+}
+
 .lds-ring {
   display: inline-block;
   position: relative;
