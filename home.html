@@ -8,15 +8,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script type="text/javascript" src="app/_js/main.js"></script>
+  <script defer type="text/javascript" src="app/_js/main.js"></script>
   <title>Bate Papo UOL</title>
 </head>
 
-<body>
+<body onload="checkUser">
   <main class="main">
     <section class="section-main d-flex flex-direction-column justify-content-center">
       <img src="app/_img/logo.svg" width="130" class="logo-uol" />
-      <form class="d-flex flex-direction-column" onsubmit="sendName">
+      <form class="d-flex flex-direction-column" method="post" onsubmit="sendForm(event)">
         <input type="text" name="user" class="input-info-user" placeholder="Digite Seu nome" required />
         <button type="submit" class="button">Entrar</button>
       </form>
