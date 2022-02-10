@@ -89,6 +89,9 @@
 .dt.message-private::before {
   border-right:24px solid #FFDDDB; 
 }
+.dt.message-login::before {
+  content: none;
+}
 
 .dd::before {
   content: '';
@@ -115,6 +118,15 @@
   color: #fff;
 }
 
+.message-login{
+  background-color: #f5f5f5;
+}
+
+.self-message::before {
+  content: none;
+  border-radius: 5px;
+}
+
 .message-private {
   background-color: #FFDDDB;
 }
@@ -126,6 +138,10 @@
   right: -120px;
   color: #8A8D91;
   font-size: 13px;
+}
+
+.icon-login {
+  margin: 0 6px 0 6px;
 }
 
 .me .date-message {
