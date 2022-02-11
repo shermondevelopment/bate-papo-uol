@@ -232,6 +232,18 @@
   align-self: center;
 }
 
+.message-warning {
+  display: none;
+  width: max-content;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  background:#FFDDDB;
+  margin: 40px auto;
+  transition: display 0.3s ease-in-out;
+}
+
 /* Spinner Loading */
 
 .load-area {

@@ -26,6 +26,9 @@ async function sendForm(event) {
     enableLoading(false)
     localStorage.setItem('user', name)
     window.location.href= "/"
+  } else {
+    enableLoading(false)
+    showMessage()
   }
 }
 
@@ -35,5 +38,13 @@ function enableLoading(loading) {
   if(loading) {
     formElement.style.display = "none"
     loadingElement.classList.remove('not-loading')
+  } else {
+    formElement.style.display = "flex"
+    loadingElement.classList.add('not-loading')
   }
+}
+
+function showMessage() {
+  const message = document.querySelector('.message-warning');
+  message.style.display = "block"
 }
