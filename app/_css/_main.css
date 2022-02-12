@@ -71,6 +71,10 @@
   word-break: break-all;
 }
 
+.dd + .dd::before {
+  content: none;
+}
+
 .dd {
   border-radius: 5px 0px 5px 5px;
 }
@@ -259,6 +263,10 @@
   z-index: 2;
 }
 
+.visible {
+  display: block !important;
+}
+
 .message-options {
   display: none;
   width: 70vw;
@@ -291,6 +299,8 @@
  margin-right: 10px;
 }
 .list-of-contacts {
+  height: 300px;
+  overflow: auto;
   margin-top: 19px;
 }
 .list-of-contacts li {
@@ -301,7 +311,11 @@
 .list-of-contacts li img {
   margin-right: 10px;
 }
-.check {
+.check .logo-check {
+  display: block;
+}
+.logo-check {
+  display: none;
   position:absolute;
   right: 0;
 }

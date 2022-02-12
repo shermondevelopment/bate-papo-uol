@@ -16,11 +16,11 @@
 
   <header class="header d-flex align-items-center justify-content-between">
     <img src="app/_img/logo.svg" alt="uol Logo" />
-    <img src="app/_img/user.svg" alt="user profile" />
+    <img src="app/_img/user.svg" alt="user profile" onclick="enableOptions()" />
   </header>
 
   <main class="main">
-    <div class="modal visible"></div>
+    <div class="modal" onclick="enableOptions()"></div>
 
     <section class="main-message">
       <dl class="dl d-flex flex-direction-column">
@@ -47,32 +47,20 @@
           <span class="font-family-roboto">Todos</span>
         </div>
         <ul class="list-of-contacts">
-          <li class="d-flex align-items-center">
-            <img src="app/_img/profile.svg" alt="profile" />
-            <span class="font-family-roboto">Victor</span>
-            <img src="app/_img/check.svg" alt="profile" class="check" />
-          </li>
-          <li class=" d-flex align-items-center">
-            <img src="app/_img/profile.svg" alt="profile" />
-            <span class="font-family-roboto">Fernanda</span>
-            <img src="app/_img/check.svg" alt="profile" class="check" />
-          </li>
-          <li class="d-flex align-items-center">
-            <img src="app/_img/profile.svg" alt="profile" />
-            <span class="font-family-roboto">Gabriela</span>
-          </li>
         </ul>
       </div>
       <p>Escolha a visibilidade:</p>
-      <div class="message-contacts">
-        <div class="message-header d-flex align-items-center">
+      <div class="message-contacts" data-visibility="publico">
+        <div class="message-header d-flex align-items-center check" onclick="visibilityMessage(this)">
           <img src="app/_img/unlock.svg" alt="users" />
           <span class="font-family-roboto">Público</span>
-          <img src="app/_img/check.svg" alt="profile" class="check" />
+          <img src="app/_img/check.svg" alt="profile" class="logo-check" />
         </div>
-        <div class="message-header d-flex align-items-center" style="margin-top: 15px">
+        <div class="message-header d-flex align-items-center" style="margin-top: 15px" data-visibility="reservadamente"
+          onclick="visibilityMessage(this)">
           <img src="app/_img/unlock.svg" alt="users" />
           <span class="font-family-roboto">Reservadamente</span>
+          <img src="app/_img/check.svg" alt="profile" class="logo-check" />
         </div>
       </div>
     </section>

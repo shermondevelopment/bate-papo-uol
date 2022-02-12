@@ -1,6 +1,8 @@
 let loading = false
 const messagesBox = document.querySelector('dl')
+const contactsElement = document.querySelector('.list-of-contacts')
 let message = '';
+let contact = {}
 
 function checkUser(){
   if(!localStorage.getItem('user')) {
@@ -82,10 +84,13 @@ function templateMessageToEveryone(item) {
 function templatePrivateMessage(item) {
   return `
     <dt class="dt message-private">
-      <span><strong class="strong">${item?.from}</strong> reservadamente para <strong>
-          class="strong">${item?.to}</strong></span>
+      <span>
+        <strong class="strong">${item.from}</strong> 
+        reservadamente para 
+        <strong class="strong">${item.to}:</strong>
+      </span>
       <span>${item?.text}</span>
-      <span class="date-message"><time datetime="${item?.time}">${item?.time}</time></span>
+      <span class="date-message"><time datetime="${item?.time}">${item.time}</time></span>
     </dt>
   `
 }
@@ -93,14 +98,23 @@ function templatePrivateMessage(item) {
 function templateOwnMessages(item) {
   return `
     <dd class="dd message-me me align-self-end">
-      <span><strong class="strong">${item.from}</strong> reservadamente para <strong
-          class="strong">${item.to}</strong></span>&nbsp;
+      <span><strong class="strong">${item.from} ${contact.visibility === 'reservadamente' ? 'reservadamente' : ''}</strong> para <strong
+          class="strong">${item.to}:</strong></span>&nbsp;
       <span>${item.text}</span>
       <span class="date-message"><time datetime="${item.time}">${item.time}</time></span>
     </dd>
   `
 }
 
+function templateContacts(name) {
+  return `
+    <li class="d-flex align-items-center" onclick="clickedPerson(this)" data-user="${name}">
+      <img src="app/_img/profile.svg" alt="profile" />
+      <span class="font-family-roboto">${name}</span>
+      <img src="app/_img/check.svg" alt="profile" class="logo-check" />
+    </li>
+  `
+}
 
 async function fetchMessage() {
   const messages = await getRequest('messages')
@@ -116,12 +130,19 @@ function renderMessages(messages) {
     else if (item.type === 'message' && item.to === 'Todos' && item.from !== localStorage.getItem('user')) {
       messagesBox.innerHTML += templateMessageToEveryone(item)
     } else if (item.type === 'message' && item.to === localStorage.getItem('user') ) {
-      messagesBox.innerHTML += templatePrivateMessage()
+      messagesBox.innerHTML += templatePrivateMessage(item)
     } else if(item.type === 'message' && item.from === localStorage.getItem('user')) {
       messagesBox.innerHTML += templateOwnMessages(item)
     }
   } )
   document.querySelector('.dt:last-child').scrollIntoView()
+}
+
+function renderContacts(contacts) {
+  contactsElement.innerHTML = ""
+  contacts.forEach( item => {
+    contactsElement.innerHTML += templateContacts(item.name)
+  } )
 }
 
 
@@ -131,7 +152,7 @@ async function myMessage(event) {
   if(message.value !== '' && event.key === 'Enter') {
     await sendMessage({ 
       from: localStorage.getItem('user'),
-      to: 'Todos',
+      to: contact.name || 'Todos',
       text: message.value,
       type: 'message'
      })
@@ -140,7 +161,11 @@ async function myMessage(event) {
 }
 
 async function sendMessage(data) {
-  await postRequest('messages', data)
+  const response = await postRequest('messages', data)
+  if(response.status !== 200) {
+    localStorage.clear('user')
+    window.location.href="home.html"
+  }
 }
 
 async function keepConnected() {
@@ -148,5 +173,33 @@ async function keepConnected() {
     name: localStorage.getItem('user')
   })
 }
+
+function enableOptions() {
+  let modal = document.querySelector('.modal');
+  let messageOptions = document.querySelector('.message-options')
+  modal.classList.toggle('visible')
+  messageOptions.classList.toggle('visible')
+}
+
+async function searchParticipants() {
+  const participants = await getRequest('participants')
+  renderContacts(participants)
+}
+
+function clickedPerson(elemento) {
+  const listContacts = contactsElement.querySelectorAll('li')
+  listContacts.forEach( item => item.classList.remove('check') )
+  elemento.classList.add('check')
+  contact.name = elemento.dataset.user;
+}
+
+function visibilityMessage(visibility) {
+  const elementClicked = document.querySelectorAll('.message-header')
+  elementClicked.forEach( item => item.classList.remove('check') )
+  contact.visibility = visibility.dataset.visibility;
+  visibility.classList.add('check')
+}
+
 setInterval(keepConnected, 5000)
 setInterval(fetchMessage, 3000)
+setInterval(searchParticipants, 10000)
