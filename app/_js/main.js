@@ -1,5 +1,6 @@
 let loading = false
 const messagesBox = document.querySelector('dl')
+let message = '';
 
 function checkUser(){
   if(!localStorage.getItem('user')) {
@@ -13,7 +14,7 @@ async function postRequest(router, data) {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({name: data})
+    body: JSON.stringify(data)
   })
   return request;
 }
@@ -27,7 +28,7 @@ async function sendForm(event) {
   event.preventDefault()
   enableLoading(true)
   const name = document.querySelector('input').value
-  const { status } = await postRequest('participants', name)
+  const { status } = await postRequest('participants', {name})
   if(status === 200) {
     enableLoading(false)
     localStorage.setItem('user', name)
@@ -81,10 +82,10 @@ function templateMessageToEveryone(item) {
 function templatePrivateMessage(item) {
   return `
     <dt class="dt message-private">
-      <span><strong class="strong">${item.from}</strong> reservadamente para <strong
-          class="strong">${item.to}</strong></span>
-      <span>${item.text}</span>
-      <span class="date-message"><time datetime="${item.time}">${item.time}</time></span>
+      <span><strong class="strong">${item?.from}</strong> reservadamente para <strong>
+          class="strong">${item?.to}</strong></span>
+      <span>${item?.text}</span>
+      <span class="date-message"><time datetime="${item?.time}">${item?.time}</time></span>
     </dt>
   `
 }
@@ -100,9 +101,9 @@ function templateOwnMessages(item) {
   `
 }
 
+
 async function fetchMessage() {
   const messages = await getRequest('messages')
-  console.log(messages)
   renderMessages(messages)
 }
 
@@ -112,15 +113,40 @@ function renderMessages(messages) {
     if(item.type === 'status') {
       messagesBox.innerHTML += templateEnterTheRoom(item)
     } 
-    else if (item.type === 'message' && item.to === 'Todos') {
+    else if (item.type === 'message' && item.to === 'Todos' && item.from !== localStorage.getItem('user')) {
       messagesBox.innerHTML += templateMessageToEveryone(item)
-    } else if (item.type === 'message' && item.from === localStorage.getItem('user')) {
+    } else if (item.type === 'message' && item.to === localStorage.getItem('user') ) {
       messagesBox.innerHTML += templatePrivateMessage()
-    } else if(item.type === 'message' && item.to === localStorage.getItem('user')) {
+    } else if(item.type === 'message' && item.from === localStorage.getItem('user')) {
       messagesBox.innerHTML += templateOwnMessages(item)
     }
   } )
   document.querySelector('.dt:last-child').scrollIntoView()
 }
 
+
+async function myMessage(event) {
+
+  let message = document.querySelector('textarea');
+  if(message.value !== '' && event.key === 'Enter') {
+    await sendMessage({ 
+      from: localStorage.getItem('user'),
+      to: 'Todos',
+      text: message.value,
+      type: 'message'
+     })
+    message.value = ""
+  }
+}
+
+async function sendMessage(data) {
+  await postRequest('messages', data)
+}
+
+async function keepConnected() {
+  await postRequest('status', {
+    name: localStorage.getItem('user')
+  })
+}
+setInterval(keepConnected, 5000)
 setInterval(fetchMessage, 3000)
