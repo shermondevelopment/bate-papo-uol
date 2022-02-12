@@ -20,6 +20,8 @@
   </header>
 
   <main class="main">
+    <div class="modal"></div>
+
     <section class="main-message">
       <dl class="dl d-flex flex-direction-column">
         <dt class="dt message-login d-flex align-items-center">
@@ -68,6 +70,43 @@
       <div class="box-area">
         <textarea type="text" name="message" class="message-input" placeholder="Escreva aqui..."></textarea>
         <img src="app/_img/airplane.svg" width="25" height="25" class="send" />
+      </div>
+    </section>
+    <section class="message-options">
+      <p>Escolha um contato para enviar mensagem:</p>
+      <div class="message-contacts">
+        <div class="message-header d-flex align-items-center">
+          <img src="app/_img/users.svg" alt="users" />
+          <span class="font-family-roboto">Todos</span>
+        </div>
+        <ul class="list-of-contacts">
+          <li class="d-flex align-items-center">
+            <img src="app/_img/profile.svg" alt="profile" />
+            <span class="font-family-roboto">Victor</span>
+            <img src="app/_img/check.svg" alt="profile" class="check" />
+          </li>
+          <li class=" d-flex align-items-center">
+            <img src="app/_img/profile.svg" alt="profile" />
+            <span class="font-family-roboto">Fernanda</span>
+            <img src="app/_img/check.svg" alt="profile" class="check" />
+          </li>
+          <li class="d-flex align-items-center">
+            <img src="app/_img/profile.svg" alt="profile" />
+            <span class="font-family-roboto">Gabriela</span>
+          </li>
+        </ul>
+      </div>
+      <p>Escolha a visibilidade:</p>
+      <div class="message-contacts">
+        <div class="message-header d-flex align-items-center">
+          <img src="app/_img/unlock.svg" alt="users" />
+          <span class="font-family-roboto">Público</span>
+          <img src="app/_img/check.svg" alt="profile" class="check" />
+        </div>
+        <div class="message-header d-flex align-items-center" style="margin-top: 15px">
+          <img src="app/_img/unlock.svg" alt="users" />
+          <span class="font-family-roboto">Reservadamente</span>
+        </div>
       </div>
     </section>
   </main>

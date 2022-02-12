@@ -244,6 +244,66 @@
   transition: display 0.3s ease-in-out;
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.message-options {
+  width: 70vw;
+  height: 100vh;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.message-options p {
+  padding: 30px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  line-height: 19px;
+  font-size: 16px;
+}
+
+.message-contacts {
+  padding: 0 17px;
+}
+
+.message-header {
+  cursor: pointer;
+  position: relative;
+}
+.message-header img {
+ margin-right: 10px;
+}
+.list-of-contacts {
+  margin-top: 19px;
+}
+.list-of-contacts li {
+  position: relative;
+  margin-bottom:  18px;
+  cursor: pointer;
+}
+.list-of-contacts li img {
+  margin-right: 10px;
+}
+.check {
+  position:absolute;
+  right: 0;
+}
+.font-family-roboto {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
 /* Spinner Loading */
 
 .load-area {
