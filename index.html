@@ -24,39 +24,34 @@
 
     <section class="main-message">
       <dl class="dl d-flex flex-direction-column">
-        <!-- <dd class="dd message-me me self-message align-self-end">
-          <span><strong class="strong">Vitor</strong> reservadamente para <strong
-              class="strong">maria:</strong></span>&nbsp;
-          <span>Eu sei muito bem qualquer coisa nos resolve</span>
-          <span class="date-message"><time datetime="2022-02-09 17:00">09/02/2022 17:00</time></span>
-        </dd> -->
       </dl>
     </section>
     <section class="box-message">
       <div class="box-area">
         <textarea type="text" name="message" class="message-input" onkeypress="myMessage(event)"
           placeholder="Escreva aqui..."></textarea>
-        <img src="app/_img/airplane.svg" width="25" height="25" class="send" onclick="myMessage(event)" />
+        <img src="app/_img/airplane.svg" width="25" height="25" class="send" onclick="requestMessage()" />
       </div>
     </section>
     <section class="message-options">
       <p>Escolha um contato para enviar mensagem:</p>
       <div class="message-contacts">
-        <div class="message-header d-flex align-items-center">
+        <div class="message-header d-flex align-items-center" onclick="clickedPerson(this)" data-user="Todos">
           <img src="app/_img/users.svg" alt="users" />
           <span class="font-family-roboto">Todos</span>
+          <img src="app/_img/check.svg" alt="profile" class="logo-check" />
         </div>
         <ul class="list-of-contacts">
         </ul>
       </div>
       <p>Escolha a visibilidade:</p>
-      <div class="message-contacts" data-visibility="publico">
+      <div class="message-contacts" data-visibility="message">
         <div class="message-header d-flex align-items-center check" onclick="visibilityMessage(this)">
           <img src="app/_img/unlock.svg" alt="users" />
           <span class="font-family-roboto">Público</span>
           <img src="app/_img/check.svg" alt="profile" class="logo-check" />
         </div>
-        <div class="message-header d-flex align-items-center" style="margin-top: 15px" data-visibility="reservadamente"
+        <div class="message-header d-flex align-items-center" style="margin-top: 15px" data-visibility="private_message"
           onclick="visibilityMessage(this)">
           <img src="app/_img/unlock.svg" alt="users" />
           <span class="font-family-roboto">Reservadamente</span>

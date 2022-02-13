@@ -98,7 +98,7 @@ function templatePrivateMessage(item) {
 function templateOwnMessages(item) {
   return `
     <dd class="dd message-me me align-self-end">
-      <span><strong class="strong">${item.from} ${contact.visibility === 'reservadamente' ? 'reservadamente' : ''}</strong> para <strong
+      <span><strong class="strong">${item.from} ${contact.visibility === 'private_message' ? 'reservadamente' : ''}</strong> para <strong
           class="strong">${item.to}:</strong></span>&nbsp;
       <span>${item.text}</span>
       <span class="date-message"><time datetime="${item.time}">${item.time}</time></span>
@@ -127,11 +127,11 @@ function renderMessages(messages) {
     if(item.type === 'status') {
       messagesBox.innerHTML += templateEnterTheRoom(item)
     } 
-    else if (item.type === 'message' && item.to === 'Todos' && item.from !== localStorage.getItem('user')) {
+    else if (item.type === 'message' && (item.to === 'Todos' || item.to !== 'Todos') && item.from !== localStorage.getItem('user')) {
       messagesBox.innerHTML += templateMessageToEveryone(item)
-    } else if (item.type === 'message' && item.to === localStorage.getItem('user') ) {
+    } else if (item.to === localStorage.getItem('user') && item.type === 'private_message') {
       messagesBox.innerHTML += templatePrivateMessage(item)
-    } else if(item.type === 'message' && item.from === localStorage.getItem('user')) {
+    } else if(item.type === 'message' || item.type === 'private_message' && item.from === localStorage.getItem('user')) {
       messagesBox.innerHTML += templateOwnMessages(item)
     }
   } )
@@ -154,7 +154,7 @@ async function myMessage(event) {
       from: localStorage.getItem('user'),
       to: contact.name || 'Todos',
       text: message.value,
-      type: 'message'
+      type: contact.private || 'message'
      })
     message.value = ""
   }
@@ -196,8 +196,21 @@ function clickedPerson(elemento) {
 function visibilityMessage(visibility) {
   const elementClicked = document.querySelectorAll('.message-header')
   elementClicked.forEach( item => item.classList.remove('check') )
-  contact.visibility = visibility.dataset.visibility;
+  contact.private = visibility.dataset.visibility;
   visibility.classList.add('check')
+}
+
+async function requestMessage() {
+  let message = document.querySelector('textarea');
+  if(message.value !== '') {
+    await sendMessage({ 
+      from: localStorage.getItem('user'),
+      to: contact.name || 'Todos',
+      text: message.value,
+      type: 'message'
+     })
+    message.value = ""
+  }
 }
 
 setInterval(keepConnected, 5000)
